@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title=pageTitle
+    //- FONTS
+    link(rel="stylesheet" href="https://fonts.programiz.com/fonts.css")
+
+    //- CSS
+    link(rel='stylesheet', href='/css/pro-utils.css')
+    link(rel='stylesheet', href='/css/style.css')
+
+    //- FEATHER ICONS
+    script(src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js")
+    //- HTMX
+    script(src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous")
+    //- MONACO EDITOR
+    script(src="https://cdn.jsdelivr.net/npm/monaco-editor@0.29.0/min/vs/loader.js")
+  body
+    include navbar
+    block content
+    include footer
+    
+    //- JavaScript
+    script(src="/js/editor.js") 
+    script(src="/js/script.js") 
+

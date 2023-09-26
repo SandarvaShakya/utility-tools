@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--programiz-brand-base-font);
+    background-color: var(--programiz-brand-dark-base-color);
+    z-index: -100;
+}
+
+img{
+    max-width: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+button {
+    background: none;
+    border: none;
+    font-size: 100%;
+    line-height: 1.15;
+}

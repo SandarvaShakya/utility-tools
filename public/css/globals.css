@@ -1,0 +1,63 @@
+:root{
+    --programiz-brand-base-font: "Euclid Circular A", Arial, sans-serif; 
+    --programiz-brand-dark-base-color: #1f2023;
+    --programiz-brand-dark-text-primary: rgba(255, 255, 255, 0.87);
+    --programiz-brand-dark-layout-divider: rgba(255, 255, 255, 0.2);
+    --programiz-brand-dark-layout-top-element: #383b40;
+    --programiz-brand-green-color: #52b357;
+    --programiz-brand-blue-color: #0556f3;
+    --programiz-brand-editor-font: "Droid Sans Mono";
+    --programiz-brand-base-font-weight: 500;
+    --programiz-content-title-font-weight: 600;
+    --programiz-brand-tertiary: #00a3ff;
+    --toggle-background: #2d2f34;
+    --header-title-background-color: #1c2130;
+    --popover-background-color: #2d2f34;
+    --popover-hover-color: rgba(255, 255, 255, 0.1);
+    --hover-color: #424448;
+    --editor-text-color: #e99173;
+    --loading-color: rgba(255, 255, 255, 0.3);
+    --default-border: 1px solid var(--programiz-brand-dark-layout-divider);
+    --zindex-base: 0;
+    --zindex-sticky: 100;
+    --white: #fff;
+}
+
+
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px){
+    .container {
+        width: 100%;
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px){
+    .container{
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px){
+    .container {
+        width: 100%;
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        width: 100%;
+        max-width: 1140px;
+    }
+}
+
+.hidden{
+    display: none;
+}

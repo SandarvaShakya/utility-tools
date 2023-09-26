@@ -1,0 +1,28 @@
+block inputHeader
+    .input-header
+        .editor__header
+            .editor__title
+                h4#test Input your JSON code
+            .editor__options.flex
+                #submit-button
+                    button.pro-btn.editor__btn.pro-btn--compact.pro-btn--primary(
+                        type='submit' 
+                        title='Convert'
+                        hx-post="/json-string" 
+                        hx-target="#output-editor"  
+                        hx-trigger="click"    
+                        hx-vals='js:{"code": inputEditor.getValue()}'
+                    )=action
+                button.editor__menu(
+                    title='Menu'
+                    hx-get="/components/menu"
+                    hx-target="#dropdown-menu" 
+                    hx-trigger="click"
+                    onClick="toggleMenu()"
+                )
+                    span.menu-img-wrapper
+                        img(src='/images/more-vertical.svg' alt='vertical menu')
+                // Hidden file input field
+                input.hidden-upload-input(type='file')
+            #dropdown-menu.hidden   
+

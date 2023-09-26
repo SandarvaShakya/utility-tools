@@ -1,0 +1,20 @@
+block navbar
+    nav.nav
+        .container.nav-wrapper
+            a.logo(href='#' title='Programiz PRO Logo')
+                span.logo__img-wrapper
+                    img(src='/images/programiz-pro-logo.svg' alt='Programiz PRO logo')
+                span.logo-tag Pro
+            ul.nav__list(title='Other Tools')
+                li.nav__item
+                    button.dropdown-button.tool-select(
+                        hx-get="/components/dropdown" 
+                        hx-swap="innerHTML" 
+                        hx-trigger="click" 
+                        hx-target="#dropdown"
+                        hx-vals='js:{currentUrl: getCurrentUrl()}'
+                        onClick="toggleDropdown()"
+                    )
+                        .tool-text=pageTitle
+                        i.chevron-down(data-feather='chevron-down')
+                    #dropdown.hidden

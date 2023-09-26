@@ -1,0 +1,6 @@
+block dropdown
+    .pro-popover-content.popover-bottomRight.has-arrow.pro-dropdown.ready.dropdown-wrapper
+        each item in items  
+            a.dropdown-item(title=item.title href=item.path)
+                i.nav__icon(data-feather=item.icon style=`color: ${item.color}`)
+                span.dropdown-text #{item.title}
