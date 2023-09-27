@@ -3,14 +3,7 @@ const router = express.Router()
 
 const {
     getHome,
-    getJsonToString,
-    getStringToJson,
-    getYamlFormatter,
-    getJsonFormatter,
-    getJsonValidator,
-    getYamlValidator,
-    getYamlToJson,
-    getJsonToYaml,
+    getTool,
     convertJsonToString,
     convertStringToJson,
     convertYamlToJson,
@@ -20,25 +13,16 @@ const {
 } = require('../controllers/homeController');
 
 router.get('/', getHome)
-router.get('/json-string', getJsonToString)
+router.get('/:page', getTool)
+
 router.post('/json-string', convertJsonToString)
-
-router.get('/string-json', getStringToJson)
 router.post('/string-json', convertStringToJson)
-
-router.get('/yaml-json', getYamlToJson)
 router.post('/yaml-json', convertYamlToJson)
-
-router.get('/json-yaml', getJsonToYaml)
 router.post('/json-yaml', convertJsonToYaml)
 
-router.get('/json-validator', getJsonValidator)
-router.get('/yaml-validator', getYamlValidator)
-
-router.get('/yaml-formatter', getYamlFormatter)
+// router.get('/json-validator', getJsonValidator)
+// router.get('/yaml-validator', getYamlValidator)
 router.post('/yaml-formatter', formatYaml)
-
-router.get('/json-formatter', getJsonFormatter)
 router.post('/json-formatter', formatJson)
 
 module.exports = router;

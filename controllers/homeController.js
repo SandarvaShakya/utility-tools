@@ -6,8 +6,7 @@ const getHome = (request, response) => {
     response.redirect(301, '/json-string')
 }
 
-// JSON TO STRING
-const getJsonToString = (request, response) => {
+const getTool = (request, response) => {
     const { 
         pageTitle, 
         action,
@@ -16,6 +15,8 @@ const getJsonToString = (request, response) => {
         inputLanguage, 
         outputLanguage 
     } = getPageData(request.path)
+
+    if(pageTitle === '') response.redirect(301, '/json-string')
     response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage });
 }
 
@@ -27,19 +28,6 @@ const convertJsonToString = (request, response) => {
     response.render('newEditor', { outputString })
 }
 
-// STRING TO JSON
-const getStringToJson = (request, response) => {
-    const { 
-        pageTitle, 
-        action,
-        editorComment, 
-        path, 
-        inputLanguage, 
-        outputLanguage 
-    } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
-}
-
 // Converts the string to json and sends the editor
 const convertStringToJson = (request, response) => {
     const { code } = request.body
@@ -47,19 +35,6 @@ const convertStringToJson = (request, response) => {
     const stringOutput = JSON.stringify(obj);
     const outputString = JSON.parse(stringOutput);
     response.render('newEditor', { outputString })
-}
-
-// YAML TO JSON
-const getYamlToJson = (request, response) => {
-    const { 
-        pageTitle, 
-        action,
-        editorComment, 
-        path, 
-        inputLanguage, 
-        outputLanguage 
-    } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
 }
 
 // Converts the yaml to json and sends the editor
@@ -73,19 +48,6 @@ const convertYamlToJson = (request, response) => {
         outputString = error.message
     }
     response.render('newEditor', { outputString })
-}
-
-// JSON TO YAML
-const getJsonToYaml = (request, response) => {
-    const { 
-        pageTitle, 
-        action,
-        editorComment, 
-        path, 
-        inputLanguage, 
-        outputLanguage 
-    } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
 }
 
 // Converts the json to yaml and sends the editor
@@ -102,19 +64,6 @@ const convertJsonToYaml = (request, response) => {
     response.render('newEditor', { outputString })
 }
 
-// JSON FORMATTER
-const getJsonFormatter = (request, response) => {
-    const { 
-        pageTitle, 
-        action,
-        editorComment, 
-        path, 
-        inputLanguage, 
-        outputLanguage 
-    } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
-}
-
 // Formats the json and sends the editor
 const formatJson = (request, response) => {
     const { code } = request.body
@@ -126,19 +75,6 @@ const formatJson = (request, response) => {
         outputString = error.message
     }
     response.render('newEditor', { outputString })
-}
-
-// YAML FORMATTER
-const getYamlFormatter = (request, response) => {
-    const { 
-        pageTitle, 
-        action,
-        editorComment, 
-        path, 
-        inputLanguage, 
-        outputLanguage 
-    } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
 }
 
 // Formats the yaml and sends the editor
@@ -156,32 +92,13 @@ const formatYaml = (request, response) => {
     response.render('newEditor', { outputString })
 }
 
-// JSON VALIDATOR
-const getJsonValidator = (request, response) => {
-    const { pageTitle, action, editorComment } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment })
-}
-
-// YAML VALIDATOR
-const getYamlValidator = (request, response) => {
-    const { pageTitle, action, editorComment } = getPageData(request.path)
-    response.render('index', { pageTitle, action, editorComment })
-}
-
 const notFound = (request, response) => {
     response.redirect('/')
 }
 
 module.exports = {
     getHome,
-    getJsonToString,
-    getStringToJson,
-    getYamlFormatter,
-    getJsonFormatter,
-    getJsonValidator,
-    getYamlValidator,
-    getYamlToJson,
-    getJsonToYaml,
+    getTool,
     convertJsonToString,
     convertStringToJson,
     convertYamlToJson,

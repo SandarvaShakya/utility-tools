@@ -15,6 +15,6 @@ block navbar
                         hx-vals='js:{currentUrl: getCurrentUrl()}'
                         onClick="toggleDropdown()"
                     )
-                        .tool-text=pageTitle
+                        .tool-text #{action === 'Convert' ? `${pageTitle} Converter` : pageTitle}
                         i.chevron-down(data-feather='chevron-down')
                     #dropdown.hidden
