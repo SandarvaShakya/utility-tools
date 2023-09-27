@@ -3,7 +3,7 @@ script.
     if(typeof newEditor === "undefined"){
         const newEditorOptions = {
             value: !{JSON.stringify(outputString)},
-            language: 'json',
+            language: !{"outputLanguage"},
             readOnly: true,
             theme: "myTheme",
             fontSize: 14,
@@ -16,5 +16,6 @@ script.
         require.config({ paths: { 'vs': '/path/to/monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function() {
             let newEditor = monaco.editor.create(document.getElementById('new-editor'), newEditorOptions);
+            console.log(newEditor.language)
         });
     }

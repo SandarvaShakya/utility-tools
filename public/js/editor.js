@@ -4,8 +4,8 @@ let inputEditor
 let outputEditor
 
 const inputEditorOptions = {
-    value: '# JSON to String Converter',
-    language: 'json',
+    value: editorComment ? editorComment : '',
+    language: inputLanguage,
     readOnly: false,
     theme: "myTheme",
     fontSize: 14,
@@ -18,7 +18,7 @@ const inputEditorOptions = {
 
 const outputEditorOptions = {
     value: '',
-    language: 'json',
+    language: outputLanguage,
     readOnly: true,
     theme: "myTheme",
     fontSize: 14,

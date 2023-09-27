@@ -7,8 +7,8 @@ block inputHeader
                 #submit-button
                     button.pro-btn.editor__btn.pro-btn--compact.pro-btn--primary(
                         type='submit' 
-                        title='Convert'
-                        hx-post="/json-string" 
+                        title='Convert' 
+                        hx-post=path 
                         hx-target="#output-editor"  
                         hx-trigger="click"    
                         hx-vals='js:{"code": inputEditor.getValue()}'

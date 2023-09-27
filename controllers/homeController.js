@@ -1,75 +1,107 @@
-const {
-    jsonValidatorTitle,
-    jsonToStringTitle,
-    jsonToYamlTitle,
-    yamlToJsonTitle,
-    yamlFormatterTitle,
-    stringToJsonTitle,
-    jsonFormatterTitle,
-    yamlValidatorTitle,
-} = require('../constants/constants')
+const { getPageData } = require('../helpers/script')
+const YAML = require('yaml')
 
-let getHome = (request, response) => {
+const getHome = (request, response) => {
     response.redirect(301, '/json-string')
 }
 
 // JSON TO STRING
-let getJsonToString = (request, response) => {
-    let pageTitle = jsonToStringTitle
-    let action = 'Convert'
-    response.render('index', { pageTitle, action });
+const getJsonToString = (request, response) => {
+    const { 
+        pageTitle, 
+        action,
+        editorComment, 
+        path, 
+        inputLanguage, 
+        outputLanguage 
+    } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage });
 }
 
-let convertJsonToString = (request, response) => {
+const convertJsonToString = (request, response) => {
     const code = request.body
     const stringCode = JSON.stringify(code.code);
-    let outputString = stringCode.replace(/\\r\\n+/g, '').replace(/\s+/g, '');
+    const outputString = stringCode.replace(/\\r\\n+/g, '').replace(/\s+/g, '');
     response.render('newEditor', { outputString })
 }
 
 // STRING TO JSON
-let getStringToJson = (request, response) => {
-    let pageTitle = stringToJsonTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getStringToJson = (request, response) => {
+    const { 
+        pageTitle, 
+        action,
+        editorComment, 
+        path, 
+        inputLanguage, 
+        outputLanguage 
+    } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
+}
+
+const convertStringToJson = (request, response) => {
+    const { code } = request.body
+    const obj = code.replace(/\\"/g, '"');
+    const stringOutput = JSON.stringify(obj);
+    const outputString = JSON.parse(stringOutput);
+    response.render('newEditor', { outputString })
 }
 
 // YAML TO JSON
-let getYamlToJson = (request, response) => {
-    let pageTitle = yamlToJsonTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getYamlToJson = (request, response) => {
+    const { 
+        pageTitle, 
+        action,
+        editorComment, 
+        path, 
+        inputLanguage, 
+        outputLanguage 
+    } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment, path, inputLanguage, outputLanguage })
+}
+
+const convertYamlToJson = (request, response) => {
+    const { code } = request.body
+    let outputString
+    try{
+        let obj = YAML.parse(code);
+        outputString = JSON.stringify(obj, null, 2);
+    } catch(error) {
+        outputString = error.message
+    }
+    response.render('newEditor', { outputString })
 }
 
 // JSON TO YAML
-let getJsonToYaml = (request, response) => {
-    let pageTitle = jsonToYamlTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getJsonToYaml = (request, response) => {
+    const { pageTitle, action, editorComment } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment })
 }
 
 // JSON FORMATTER
-let getJsonFormatter = (request, response) => {
-    let pageTitle = jsonFormatterTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getJsonFormatter = (request, response) => {
+    const { pageTitle, action, editorComment } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment })
 }
 
 // YAML FORMATTER
-let getYamlFormatter = (request, response) => {
-    let pageTitle = yamlFormatterTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getYamlFormatter = (request, response) => {
+    const { pageTitle, action, editorComment } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment })
 }
 
 // JSON VALIDATOR
-let getJsonValidator = (request, response) => {
-    let pageTitle = jsonValidatorTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getJsonValidator = (request, response) => {
+    const { pageTitle, action, editorComment } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment })
 }
 
 // YAML VALIDATOR
-let getYamlValidator = (request, response) => {
-    let pageTitle = yamlValidatorTitle
-    response.render('pages/stringToJson', { pageTitle })
+const getYamlValidator = (request, response) => {
+    const { pageTitle, action, editorComment } = getPageData(request.path)
+    response.render('index', { pageTitle, action, editorComment })
 }
 
-let notFound = (request, response) => {
+const notFound = (request, response) => {
     response.redirect('/')
 }
 
@@ -84,5 +116,7 @@ module.exports = {
     getYamlToJson,
     getJsonToYaml,
     convertJsonToString,
+    convertStringToJson,
+    convertYamlToJson,
     notFound
 }

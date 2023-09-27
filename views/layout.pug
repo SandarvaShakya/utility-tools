@@ -21,6 +21,11 @@ html
     include footer
     
     //- JavaScript
+    script.
+      const editorComment = "!{editorComment}"
+      const inputLanguage = "!{inputLanguage}"
+      const outputLanguage = "!{outputLanguage}"
+      console.log(typeof inputLanguage, typeof outputLanguage)
     script(src="/js/editor.js") 
     script(src="/js/script.js") 
 
