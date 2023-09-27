@@ -16,6 +16,5 @@ script.
         require.config({ paths: { 'vs': '/path/to/monaco-editor/min/vs' } });
         require(['vs/editor/editor.main'], function() {
             let newEditor = monaco.editor.create(document.getElementById('new-editor'), newEditorOptions);
-            console.log(newEditor.language)
         });
     }
